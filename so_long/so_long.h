@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-#include "mlx.h"
+#include "mlx/mlx.h"
 #include "libft_super/libft.h"
 #include <fcntl.h>
 #include <math.h>
@@ -36,14 +36,15 @@ typedef struct s_img
 	void *exit_e;
 } t_img;
 
+typedef struct s_point
+{
+	int x;
+	int y;
+} t_point;
 typedef struct s_map
 {
 	char **map;
-	// int x;
-	// int y;
 	int coins;
-	void *player_start;
-
 } t_map;
 
 typedef struct s_data
@@ -52,10 +53,8 @@ typedef struct s_data
 	void *mlx_win;
 	t_img img;
 	t_map map;
-	int player_x;
-	int player_y;
-	int size_x;
-	int size_y;
+	t_point player_pos;
+	t_point size;
 	int moves;
 	int coins_collected;
 } t_data;

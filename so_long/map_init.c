@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/30 18:42:38 by marboccu          #+#    #+#             */
+/*   Updated: 2023/11/30 18:42:40 by marboccu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int ft_matlen(char **matrix)
@@ -58,14 +70,14 @@ void ft_drop_counter(t_data *matrix)
 
 void ft_render_image(t_data *window)
 {
-	window->img.player_up = mlx_xpm_file_to_image(window->mlx, "textures/char2.xpm", &window->size_x, &window->size_y);
-	window->img.player_down = mlx_xpm_file_to_image(window->mlx, "textures/char1.xpm", &window->size_x, &window->size_y);
-	window->img.player_left = mlx_xpm_file_to_image(window->mlx, "textures/char4.xpm", &window->size_x, &window->size_y);
-	window->img.player_right = mlx_xpm_file_to_image(window->mlx, "textures/char3.xpm", &window->size_x, &window->size_y);
-	window->img.empty_0 = mlx_xpm_file_to_image(window->mlx, "textures/floor.xpm", &window->size_x, &window->size_y);
-	window->img.wall_1 = mlx_xpm_file_to_image(window->mlx, "textures/wall.xpm", &window->size_x, &window->size_y);
-	window->img.coll_c = mlx_xpm_file_to_image(window->mlx, "textures/collectible.xpm", &window->size_x, &window->size_y);
-	window->img.exit_e = mlx_xpm_file_to_image(window->mlx, "textures/door.xpm", &window->size_x, &window->size_y);
+	window->img.player_up = mlx_xpm_file_to_image(window->mlx, "textures/char2.xpm", &window->size.x, &window->size.y);
+	window->img.player_down = mlx_xpm_file_to_image(window->mlx, "textures/char1.xpm", &window->size.x, &window->size.y);
+	window->img.player_left = mlx_xpm_file_to_image(window->mlx, "textures/char4.xpm", &window->size.x, &window->size.y);
+	window->img.player_right = mlx_xpm_file_to_image(window->mlx, "textures/char3.xpm", &window->size.x, &window->size.y);
+	window->img.empty_0 = mlx_xpm_file_to_image(window->mlx, "textures/floor.xpm", &window->size.x, &window->size.y);
+	window->img.wall_1 = mlx_xpm_file_to_image(window->mlx, "textures/wall.xpm", &window->size.x, &window->size.y);
+	window->img.coll_c = mlx_xpm_file_to_image(window->mlx, "textures/collectible.xpm", &window->size.x, &window->size.y);
+	window->img.exit_e = mlx_xpm_file_to_image(window->mlx, "textures/door.xpm", &window->size.x, &window->size.y);
 }
 
 void ft_fill_term(t_data *data)
@@ -77,7 +89,7 @@ void ft_fill_term(t_data *data)
 	while (i < BUFFERINO)
 	{
 		j = 0;
-		while (j < data->size_x * IMG_WIDTH)
+		while (j < data->size.x * IMG_WIDTH)
 		{
 			mlx_pixel_put(data->mlx, data->mlx_win, j, i, 0xff3900);
 			j++;
@@ -106,8 +118,8 @@ void ft_put_map(t_data *matrix, int keycode)
 				mlx_put_image_to_window(matrix->mlx, matrix->mlx_win, matrix->img.coll_c, j * IMG_HEIGHT, i * IMG_WIDTH + BUFFERINO);
 			else if (matrix->map.map[i][j] == 'P')
 			{
-				matrix->player_x = j;
-				matrix->player_y = i;
+				matrix->player_pos.x = j;
+				matrix->player_pos.y = i;
 				if (keycode == 'w' || keycode == ARROW_UP)
 					mlx_put_image_to_window(matrix->mlx, matrix->mlx_win, matrix->img.player_up, j * IMG_HEIGHT, i * IMG_WIDTH + BUFFERINO);
 				else if (keycode == 's' || keycode == ARROW_DOWN)

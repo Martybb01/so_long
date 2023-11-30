@@ -10,17 +10,18 @@ LIBFT = libft_super/libft.a
 
 SRC = main.c \
 map_init.c \
+move.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): lib_comp mlx_comp
-ifeq ($(shell uname -s), Linux)
-	make comp_linux
-else
-	make comp
-endif
+$(NAME): lib_comp mlx_comp comp
+# ifeq ($(shell uname -s), Darwin)
+# 	make comp
+# else
+# 	make comp_linux
+# endif
 
 lib_comp:
 	make -C libft_super/
