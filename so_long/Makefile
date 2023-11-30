@@ -15,13 +15,12 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-ifeq ($(shell uname), Linux)
-	$(NAME): lib_comp mlx_comp comp_linux
+$(NAME): lib_comp mlx_comp
+ifeq ($(shell uname -s), Linux)
+	make comp_linux
 else
-	$(NAME): lib_comp mlx_comp comp
+	make comp
 endif
-
-$(NAME): lib_comp mlx_comp comp
 
 lib_comp:
 	make -C libft_super/
