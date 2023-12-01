@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:31:51 by marboccu          #+#    #+#             */
-/*   Updated: 2023/11/30 18:56:30 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:22:16 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static int ft_player_go(t_data *matrix, t_point *temp_pos)
 	else if (matrix->map.map[temp_pos->y][temp_pos->x] == 'E')
 	{
 		if (matrix->map.coins == matrix->coins_collected)
+		{
+			ft_printf("YOU WIN!\n");
 			ft_window_close(matrix);
+		}
 		return (1);
 	}
 	return (0);

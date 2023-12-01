@@ -10,7 +10,9 @@ LIBFT = libft_super/libft.a
 
 SRC = main.c \
 map_init.c \
-move.c
+move.c \
+utils.c \
+check.c
 
 OBJ = $(SRC:.c=.o)
 

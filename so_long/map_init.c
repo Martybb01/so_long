@@ -6,21 +6,11 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:38 by marboccu          #+#    #+#             */
-/*   Updated: 2023/11/30 18:42:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:09:17 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int ft_matlen(char **matrix)
-{
-	int i;
-
-	i = 0;
-	while (matrix[i])
-		i++;
-	return (i);
-}
 
 char **ft_map_init(char *map, t_data *matrix)
 {
@@ -54,7 +44,6 @@ void ft_drop_counter(t_data *matrix)
 	int j;
 
 	i = 0;
-	matrix->coins_collected = 0;
 	while (matrix->map.map[i])
 	{
 		j = 0;
@@ -62,6 +51,10 @@ void ft_drop_counter(t_data *matrix)
 		{
 			if (matrix->map.map[i][j] == 'C')
 				matrix->coins_collected++;
+			if (matrix->map.map[i][j] == 'P')
+				matrix->player_count++;
+			if (matrix->map.map[i][j] == 'E')
+				matrix->exit_count++;
 			j++;
 		}
 		i++;
