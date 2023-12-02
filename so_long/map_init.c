@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:38 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/02 02:19:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/02 13:16:02 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char **ft_map_init(char *map, t_data *matrix)
 	int fd;
 	char *line;
 	char *buffer;
+	char **lines;
+	int i;
 
 	buffer = malloc(1);
 	if (!buffer)
@@ -24,16 +26,34 @@ char **ft_map_init(char *map, t_data *matrix)
 	fd = open(map, O_RDONLY);
 	if (fd != -1)
 	{
-		while (1)
+		while ((line = get_next_line(fd)) != NULL)
 		{
-			line = get_next_line(fd);
-			if (!line)
-				break;
+			// line = get_next_line(fd);
+			// if (!line)
+			// 	break;
 			buffer = ft_strjoin(buffer, line);
+			buffer = ft_strjoin(buffer, "\n");
 			free(line);
 		}
+		close(fd);
+		if (ft_strlen(buffer) == 0)
+		{
+			free(buffer);
+			ft_error("MAP IS EMPTY");
+		}
 	}
-	matrix->map.map = ft_split(buffer, '\n');
+	lines = ft_split(buffer, '\n');
+	free(buffer);
+
+	i = 1;
+	while (lines[i])
+	{
+		if (ft_strlen(lines[i]) == 0)
+			ft_error("MAP CONTAINS EMPTY LINES");
+		i++;
+	}
+	matrix->map.map = lines;
+	// matrix->map.map = ft_split(buffer, '\n');
 	ft_drop_counter(matrix);
 	return (matrix->map.map);
 }

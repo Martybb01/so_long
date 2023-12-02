@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:48:43 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/02 02:17:45 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/02 03:15:34 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int ft_checkfile(int ac, char *file)
 	return (1);
 }
 
-/* check if the map is rectangular Printing an error message if not */
 void ft_is_maprect(t_data *matrix)
 {
 	int i;
@@ -51,6 +50,12 @@ void ft_is_maprect(t_data *matrix)
 	}
 }
 
+int ft_wrong_char(char c)
+{
+	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P')
+		ft_error("MAP CONTAINS WRONG CHARS");
+	return (0);
+}
 void ft_checkwalls(t_data *matrix)
 {
 	int i;
@@ -67,6 +72,7 @@ void ft_checkwalls(t_data *matrix)
 				if (matrix->map.map[i][j] != '1')
 					ft_error("MAP IS NOT CLOSED");
 			}
+			ft_wrong_char(matrix->map.map[i][j]);
 			j++;
 		}
 		i++;
