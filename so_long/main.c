@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:49 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/01 15:20:49 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/02 02:15:38 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int ft_init_vars(t_data *window)
 int main(int ac, char **av)
 {
     t_data window;
-    if (ac != 2)
-        return (1);
+    ft_checkfile(ac, av[1]);
+    ft_is_maprect(&window);
     ft_init_vars(&window);
     window.map.map = ft_map_init(av[1], &window);
     window.size.y = ft_matlen(window.map.map);
     window.size.x = ft_strlen(window.map.map[0]);
-    ft_checkerrors(&window);
     window.mlx = mlx_init();
+    ft_checkerrors(&window);
     if (!window.mlx)
         return (1);
     window.mlx_win = mlx_new_window(window.mlx, window.size.x * IMG_WIDTH, window.size.y * IMG_HEIGHT + BUFFERINO, "so_long");
