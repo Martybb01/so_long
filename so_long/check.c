@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:48:43 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/02 03:15:34 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:01:23 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,12 @@ int ft_checkfile(int ac, char *file)
 void ft_is_maprect(t_data *matrix)
 {
 	int i;
-	int j;
 
 	i = 0;
 	while (matrix->map.map[i])
 	{
-		j = 0;
-		while (matrix->map.map[j])
-		{
-			if (matrix->map.map[i][j] == '\0')
-				ft_error("MAP IS NOT RECTANGULAR");
-			j++;
-		}
+		if (ft_strlen(matrix->map.map[i]) != ft_strlen(matrix->map.map[i + 1]))
+			ft_error("MAP IS NOT RECTANGULAR");
 		i++;
 	}
 }

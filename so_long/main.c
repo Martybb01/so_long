@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:49 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/02 13:01:48 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:17:18 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ int main(int ac, char **av)
 {
     t_data window;
     ft_checkfile(ac, av[1]);
-    ft_is_maprect(&window);
     ft_init_vars(&window);
     window.map.map = ft_map_init(av[1], &window);
     window.size.y = ft_matlen(window.map.map);
     window.size.x = ft_strlen(window.map.map[0]);
+    ft_check_map(&window);
+    //  ft_is_maprect(&window);
     window.mlx = mlx_init();
     ft_checkerrors(&window);
     if (!window.mlx)

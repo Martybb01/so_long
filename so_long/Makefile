@@ -1,5 +1,5 @@
 NAME = so_long
-CC = gcc
+CC = cc
 CFLAGS = -Wextra -Werror -Wall -g
 LINKS = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
 LINKS_LINUX = -lX11 -lm -lXext
@@ -12,7 +12,8 @@ SRC = main.c \
 map_init.c \
 move.c \
 utils.c \
-check.c
+check.c \
+flood_map.c
 
 OBJ = $(SRC:.c=.o)
 

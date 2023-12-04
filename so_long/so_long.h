@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 // #include <X11/X.h>
 // #include <X11/keysym.h>
 // #include <sys/types.h>
@@ -73,5 +74,7 @@ void ft_error(char *errormessage);
 void ft_checkerrors(t_data *matrix);
 int ft_checkfile(int ac, char *file);
 void ft_is_maprect(t_data *matrix);
+// int is_exit_accessible(t_data *matrix, int x, int y);
+void ft_check_map(t_data *game);
 
 #endif
