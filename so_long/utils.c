@@ -6,12 +6,18 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:21:34 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/02 02:52:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/04 23:35:11 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #define GL_SILENCE_DEPRECATION
+
+void ft_error(char *errormessage)
+{
+	ft_printf("\n###############################\n%s\n###############################\n\n", errormessage);
+	exit(1);
+}
 
 int ft_window_close(t_data *window)
 {
@@ -50,4 +56,10 @@ int ft_match_ext(char *map, char *ext)
 		ext++;
 	}
 	return (1);
+}
+int ft_wrong_char(char c)
+{
+	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P')
+		ft_error("MAP CONTAINS WRONG CHARS");
+	return (0);
 }

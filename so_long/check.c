@@ -6,24 +6,18 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:48:43 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/03 17:01:23 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/04 23:29:38 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void ft_error(char *errormessage)
-{
-	ft_printf("\n###############################\n%s\n###############################\n\n", errormessage);
-	exit(1);
-}
 
 // function to control if the map file is a .ber file and exists
 int ft_checkfile(int ac, char *file)
 {
 	if (ac != 2)
 	{
-		ft_error("Usage: ./so_long file.ber");
+		ft_error("Usage: ./so_long maps/file.ber");
 		return 0;
 	}
 	else if (!ft_match_ext(file, ".ber"))
@@ -36,7 +30,7 @@ void ft_is_maprect(t_data *matrix)
 	int i;
 
 	i = 0;
-	while (matrix->map.map[i])
+	while (matrix->map.map[i] && matrix->map.map[i + 1])
 	{
 		if (ft_strlen(matrix->map.map[i]) != ft_strlen(matrix->map.map[i + 1]))
 			ft_error("MAP IS NOT RECTANGULAR");
@@ -44,12 +38,6 @@ void ft_is_maprect(t_data *matrix)
 	}
 }
 
-int ft_wrong_char(char c)
-{
-	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P')
-		ft_error("MAP CONTAINS WRONG CHARS");
-	return (0);
-}
 void ft_checkwalls(t_data *matrix)
 {
 	int i;
@@ -73,6 +61,20 @@ void ft_checkwalls(t_data *matrix)
 	}
 }
 
+int ft_check_empty_lines(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\n' && line[i + 1] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void ft_checkerrors(t_data *matrix)
 {
 	if (matrix->coins_collected == 0)
@@ -81,5 +83,8 @@ void ft_checkerrors(t_data *matrix)
 		ft_error("WRONG NUMBER OF PLAYERS");
 	if (matrix->exit_count != 1)
 		ft_error("WRONG NUMBER OF EXITS");
+	if (!ft_is_reachable(matrix))
+		ft_error("MAP IS NOT REACHABLE");
 	ft_checkwalls(matrix);
+	ft_is_maprect(matrix);
 }

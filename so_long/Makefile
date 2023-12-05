@@ -13,7 +13,8 @@ map_init.c \
 move.c \
 utils.c \
 check.c \
-flood_map.c
+flood_map.c \
+map_render.c
 
 OBJ = $(SRC:.c=.o)
 

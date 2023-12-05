@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:49 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/04 13:17:18 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/04 23:24:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int main(int ac, char **av)
     window.map.map = ft_map_init(av[1], &window);
     window.size.y = ft_matlen(window.map.map);
     window.size.x = ft_strlen(window.map.map[0]);
-    ft_check_map(&window);
-    //  ft_is_maprect(&window);
-    window.mlx = mlx_init();
     ft_checkerrors(&window);
+    window.mlx = mlx_init();
     if (!window.mlx)
         return (1);
     window.mlx_win = mlx_new_window(window.mlx, window.size.x * IMG_WIDTH, window.size.y * IMG_HEIGHT + BUFFERINO, "so_long");

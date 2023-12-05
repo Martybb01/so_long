@@ -62,19 +62,20 @@ typedef struct s_data
 
 int ft_matlen(char **matrix);
 char **ft_map_init(char *map, t_data *matrix);
-void ft_drop_counter(t_data *matrix);
 void ft_render_image(t_data *window);
 void ft_fill_term(t_data *data);
 void ft_put_map(t_data *matrix, int keycode);
 int ft_key_press(int keycode, t_data *matrix);
 int ft_window_close(t_data *window);
 int ft_match_ext(char *map, char *ext);
+int ft_is_reachable(t_data *matrix);
+int ft_wrong_char(char c);
 
 void ft_error(char *errormessage);
+int ft_check_empty_lines(char *line);
 void ft_checkerrors(t_data *matrix);
 int ft_checkfile(int ac, char *file);
 void ft_is_maprect(t_data *matrix);
-// int is_exit_accessible(t_data *matrix, int x, int y);
-void ft_check_map(t_data *game);
+// void ft_check_map(t_data *game);
 
 #endif
