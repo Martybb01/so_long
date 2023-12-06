@@ -69,13 +69,15 @@ int ft_key_press(int keycode, t_data *matrix);
 int ft_window_close(t_data *window);
 int ft_match_ext(char *map, char *ext);
 int ft_is_reachable(t_data *matrix);
-int ft_wrong_char(char c);
+int ft_wrong_char(char c, char **map);
 
-void ft_error(char *errormessage);
+void ft_error(char *errormessage, char **matrix);
 int ft_check_empty_lines(char *line);
 void ft_checkerrors(t_data *matrix);
 int ft_checkfile(int ac, char *file);
 void ft_is_maprect(t_data *matrix);
+void ft_free_matrix(char **matrix);
+void ft_free_imgs(t_data *matrix);
 // void ft_check_map(t_data *game);
 
 #endif

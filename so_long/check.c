@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:48:43 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/04 23:29:38 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:34:54 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int ft_checkfile(int ac, char *file)
 {
 	if (ac != 2)
 	{
-		ft_error("Usage: ./so_long maps/file.ber");
+		ft_error("Usage: ./so_long maps/file.ber", NULL);
 		return 0;
 	}
 	else if (!ft_match_ext(file, ".ber"))
-		ft_error("MAP FILE IS NOT A .ber FILE");
+		ft_error("MAP FILE IS NOT A .ber FILE", NULL);
 	return (1);
 }
 
@@ -33,7 +33,7 @@ void ft_is_maprect(t_data *matrix)
 	while (matrix->map.map[i] && matrix->map.map[i + 1])
 	{
 		if (ft_strlen(matrix->map.map[i]) != ft_strlen(matrix->map.map[i + 1]))
-			ft_error("MAP IS NOT RECTANGULAR");
+			ft_error("MAP IS NOT RECTANGULAR", matrix->map.map);
 		i++;
 	}
 }
@@ -52,9 +52,9 @@ void ft_checkwalls(t_data *matrix)
 			if (i == 0 || j == 0 || i == matrix->size.y - 1 || j == matrix->size.x - 1)
 			{
 				if (matrix->map.map[i][j] != '1')
-					ft_error("MAP IS NOT CLOSED");
+					ft_error("MAP IS NOT CLOSED", matrix->map.map);
 			}
-			ft_wrong_char(matrix->map.map[i][j]);
+			ft_wrong_char(matrix->map.map[i][j], matrix->map.map);
 			j++;
 		}
 		i++;
@@ -78,13 +78,13 @@ int ft_check_empty_lines(char *line)
 void ft_checkerrors(t_data *matrix)
 {
 	if (matrix->coins_collected == 0)
-		ft_error("NO DROPS, THE FLOOR IS TOO LAVA");
+		ft_error("NO DROPS, THE FLOOR IS TOO LAVA", matrix->map.map);
 	if (matrix->player_count != 1)
-		ft_error("WRONG NUMBER OF PLAYERS");
+		ft_error("WRONG NUMBER OF PLAYERS", matrix->map.map);
 	if (matrix->exit_count != 1)
-		ft_error("WRONG NUMBER OF EXITS");
+		ft_error("WRONG NUMBER OF EXITS", matrix->map.map);
 	if (!ft_is_reachable(matrix))
-		ft_error("MAP IS NOT REACHABLE");
+		ft_error("MAP IS NOT REACHABLE", matrix->map.map);
 	ft_checkwalls(matrix);
 	ft_is_maprect(matrix);
 }

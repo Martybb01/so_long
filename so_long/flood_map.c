@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 22:31:56 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/04 23:51:48 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/05 23:08:58 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,16 @@ char **ft_copy_matrix(char **matrix, int rows, int cols)
 	char **copy;
 	int i;
 
-	copy = malloc(sizeof(char *) * rows);
+	copy = malloc(sizeof(char *) * (rows + 1));
 	i = 0;
-	while (i < rows)
+	while (matrix[i])
 	{
 		copy[i] = malloc(sizeof(char) * cols);
 		ft_memcpy(copy[i], matrix[i], sizeof(char) * cols);
 		i++;
 	}
+	copy[i] = NULL;
 	return (copy);
-}
-
-void ft_free_matrix(char **matrix, int rows)
-{
-	int i;
-
-	i = 0;
-	while (i < rows)
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
 }
 
 int ft_is_reachable(t_data *matrix)
@@ -97,7 +85,7 @@ int ft_is_reachable(t_data *matrix)
 
 	matrix_copy = ft_copy_matrix(matrix->map.map, size.y, size.x);
 	ft_dfs(matrix_copy, size, curr, &special);
-	ft_free_matrix(matrix_copy, size.y);
+	ft_free_matrix(matrix_copy);
 
 	if (special.exit_count != 1 || special.map.coins != matrix->coins_collected)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:31:51 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/01 15:22:16 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:38:15 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int ft_key_press(int keycode, t_data *matrix)
 
 	temp_pos = matrix->player_pos;
 	if (keycode == ESC)
-		exit(1);
+		ft_window_close(matrix);
 	else if (keycode == 'w' || keycode == ARROW_UP)
 		temp_pos.y -= 1;
 	else if (keycode == 's' || keycode == ARROW_DOWN)

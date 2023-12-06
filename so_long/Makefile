@@ -14,7 +14,8 @@ move.c \
 utils.c \
 check.c \
 flood_map.c \
-map_render.c
+map_render.c \
+free.c
 
 OBJ = $(SRC:.c=.o)
 
