@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:42:38 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/05 18:39:52 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:24:26 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void ft_badmap(char *buffer)
 	}
 }
 
-char **ft_map_init(char *map, t_data *matrix)
+char *ft_read_map(char *map)
 {
 	int fd;
 	char *line;
@@ -67,6 +67,16 @@ char **ft_map_init(char *map, t_data *matrix)
 		close(fd);
 		ft_badmap(buffer);
 	}
+	return (buffer);
+}
+
+char **ft_map_init(char *map, t_data *matrix)
+{
+	char *buffer;
+
+	buffer = ft_read_map(map);
+	if (!buffer)
+		ft_error("MAP FILE DOES NOT EXIST", NULL);
 	if (ft_check_empty_lines(buffer))
 	{
 		free(buffer);

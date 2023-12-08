@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:48:43 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/05 18:34:54 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/08 03:58:50 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ int ft_checkfile(int ac, char *file)
 		return 0;
 	}
 	else if (!ft_match_ext(file, ".ber"))
+	{
 		ft_error("MAP FILE IS NOT A .ber FILE", NULL);
+	}
+	else if (open(file, O_RDONLY) == -1)
+	{
+		ft_error("MAP FILE DOES NOT EXIST", NULL);
+	}
 	return (1);
 }
 
