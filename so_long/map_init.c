@@ -12,10 +12,10 @@
 
 #include "so_long.h"
 
-void ft_all_counter(t_data *matrix)
+void	ft_all_counter(t_data *matrix)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (matrix->map.map[i])
@@ -35,7 +35,7 @@ void ft_all_counter(t_data *matrix)
 	}
 }
 
-void ft_badmap(char *buffer)
+void	ft_badmap(char *buffer)
 {
 	if (ft_strlen(buffer) == 0)
 	{
@@ -44,11 +44,11 @@ void ft_badmap(char *buffer)
 	}
 }
 
-char *ft_read_map(char *map)
+char	*ft_read_map(char *map)
 {
-	int fd;
-	char *line;
-	char *buffer;
+	int		fd;
+	char	*line;
+	char	*buffer;
 
 	buffer = ft_calloc(1, 1);
 	if (!buffer)
@@ -60,7 +60,7 @@ char *ft_read_map(char *map)
 		{
 			line = get_next_line(fd);
 			if (!line)
-				break;
+				break ;
 			buffer = ft_freejoin(buffer, line);
 			free(line);
 		}
@@ -70,9 +70,9 @@ char *ft_read_map(char *map)
 	return (buffer);
 }
 
-char **ft_map_init(char *map, t_data *matrix)
+char	**ft_map_init(char *map, t_data *matrix)
 {
-	char *buffer;
+	char	*buffer;
 
 	buffer = ft_read_map(map);
 	if (!buffer)

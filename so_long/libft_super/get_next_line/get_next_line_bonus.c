@@ -12,10 +12,10 @@
 
 #include "get_next_line_bonus.h"
 
-static char *read_fd_line(int fd, char *line_read, char *buffer)
+static char	*read_fd_line(int fd, char *line_read, char *buffer)
 {
-	ssize_t bytes_read;
-	char *temp;
+	ssize_t	bytes_read;
+	char	*temp;
 
 	bytes_read = 1;
 	while (bytes_read > 0 && !ft_strchr(buffer, '\n'))
@@ -41,10 +41,10 @@ static char *read_fd_line(int fd, char *line_read, char *buffer)
 	return (line_read);
 }
 
-static char *line_creator(char *line_buffer, char *line_read)
+static char	*line_creator(char *line_buffer, char *line_read)
 {
-	ssize_t i;
-	ssize_t len;
+	ssize_t	i;
+	ssize_t	len;
 
 	i = 0;
 	len = 0;
@@ -63,11 +63,11 @@ static char *line_creator(char *line_buffer, char *line_read)
 	return (line_read);
 }
 
-static char *extract_new_line(char *line_buffer)
+static char	*extract_new_line(char *line_buffer)
 {
-	ssize_t i;
-	ssize_t len;
-	char *new_line;
+	ssize_t	i;
+	ssize_t	len;
+	char	*new_line;
 
 	i = 0;
 	len = 0;
@@ -89,11 +89,11 @@ static char *extract_new_line(char *line_buffer)
 	return (new_line);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *save_buff[4096];
-	char *buffer;
-	char *line_read;
+	static char	*save_buff[4096];
+	char		*buffer;
+	char		*line_read;
 
 	line_read = NULL;
 	buffer = ft_calloc(sizeof(char), BUFFER_SIZE + 1);

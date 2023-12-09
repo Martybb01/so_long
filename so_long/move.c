@@ -6,13 +6,13 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:31:51 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/05 18:38:15 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:36:44 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int ft_player_go(t_data *matrix, t_point *temp_pos)
+static int	ft_player_go(t_data *matrix, t_point *temp_pos)
 {
 	if (matrix->map.map[temp_pos->y][temp_pos->x] == '1')
 		return (1);
@@ -30,25 +30,27 @@ static int ft_player_go(t_data *matrix, t_point *temp_pos)
 	return (0);
 }
 
-static void ft_put_on_screen(t_data *matrix, int keycode)
+static void	ft_put_on_screen(t_data *matrix, int keycode)
 {
-	char *str;
-	char *str2;
+	char	*str;
+	char	*str2;
 
 	ft_put_map(matrix, keycode);
 	str = ft_itoa(matrix->map.coins);
-	str = ft_strjoin("coins: ", str);
+	str2 = ft_strjoin("coins: ", str);
 	mlx_string_put(matrix->mlx, matrix->mlx_win, 10, 10, 0x000000, str);
-	str2 = ft_itoa(matrix->moves);
-	str2 = ft_strjoin("moves: ", str2);
-	mlx_string_put(matrix->mlx, matrix->mlx_win, 10, 25, 0x000000, str2);
-	free(str2);
 	free(str);
+	free(str2);
+	str = ft_itoa(matrix->moves);
+	str2 = ft_strjoin("moves: ", str);
+	mlx_string_put(matrix->mlx, matrix->mlx_win, 10, 25, 0x000000, str2);
+	free(str);
+	free(str2);
 }
 
-int ft_key_press(int keycode, t_data *matrix)
+int	ft_key_press(int keycode, t_data *matrix)
 {
-	t_point temp_pos;
+	t_point	temp_pos;
 
 	temp_pos = matrix->player_pos;
 	if (keycode == ESC)

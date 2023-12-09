@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-void ft_free_imgs(t_data *mlx)
+void	ft_free_imgs(t_data *mlx)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -28,9 +28,9 @@ void ft_free_imgs(t_data *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img.exit_e);
 }
 
-void ft_free_matrix(char **matrix)
+void	ft_free_matrix(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])
