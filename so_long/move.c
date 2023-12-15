@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:31:51 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/08 17:36:44 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:53:13 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_put_on_screen(t_data *matrix, int keycode)
 	ft_put_map(matrix, keycode);
 	str = ft_itoa(matrix->map.coins);
 	str2 = ft_strjoin("coins: ", str);
-	mlx_string_put(matrix->mlx, matrix->mlx_win, 10, 10, 0x000000, str);
+	mlx_string_put(matrix->mlx, matrix->mlx_win, 10, 10, 0x000000, str2);
 	free(str);
 	free(str2);
 	str = ft_itoa(matrix->moves);

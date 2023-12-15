@@ -6,12 +6,11 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:21:34 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/09 02:45:38 by marboccu         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:12:45 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#define GL_SILENCE_DEPRECATION
 
 void	ft_error(char *errormessage, char **matrix)
 {
